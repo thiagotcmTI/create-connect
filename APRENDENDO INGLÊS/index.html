@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frases de Prática</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body style="background-image: url(img/bg.png);">
+  
+  <div class="container">
+    <!-- Grid esquerdo (botões de seção) -->
+    <div id="left-panel" class="grid-item">
+      <h2>Escolha uma Seção</h2>
+      <button id="sports-btn" class="session-btn">Esportes</button>
+      <button id="work-btn" class="session-btn">Trabalho</button>
+      <button id="travel-btn" class="session-btn">Viagem</button>
+      <button id="history-btn" class="session-btn">História</button>
+      <button id="music-btn" class="session-btn">Música</button>
+      <button id="food-btn" class="session-btn">Comida</button>
+      <button id="social-btn" class="session-btn">Social</button>
+    </div>
+
+    <!-- Grid direito (área para exibir as frases) -->
+    <div id="right-panel" class="grid-item">
+      <div id="exercise-section" style="display: none;">
+        <h2>Frase em Inglês:</h2>
+        <div class="phrase-container">
+          <p id="english-phrase"></p>
+
+          <!-- Botões de ouvir e de velocidade ao lado da frase -->
+          <div class="controls">
+            <button id="listen-button" class="listen-btn">Ouvir</button>
+            <div id="speed-dropdown" class="speed-dropdown">Velocidade
+              <div id="speed-options" class="speed-options">
+                <div class="speed-option" data-rate="0.5">0.5x</div>
+                <div class="speed-option" data-rate="0.75">0.75x</div>
+                <div class="speed-option" data-rate="1">1x</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p id="translation"></p>
+
+        <!-- Grupo de entrada para escrita da frase -->
+        <div class="input-group">
+          <input type="text" id="phrase-input" placeholder="Digite a frase" />
+          <button id="check-answer">Verificar Resposta</button>
+        </div>
+
+        <!-- Campo para exibir a frase falada -->
+        <div class="spoken-phrase-container">
+          <textarea id="spoken-phrase" placeholder="Sua pronúncia" readonly></textarea>
+          <button id="start-speech-button" class="start-speech-btn">Fale aqui 🎙</button>
+        </div>
+
+        <div class="button-group">
+          <button id="next-button">Próxima Frase</button>
+          <button id="prev-button">Frase Anterior</button>
+        </div>
+
+        <div id="feedback"></div>
+
+        <div class="progress-container">
+          <div class="progress"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
