@@ -161,7 +161,9 @@ header #animated-text {
   color: white;
 }
 
-
+.textogaleria hr{
+  border-radius: 5px;
+}
 
 .gallery {
   display: flex;
