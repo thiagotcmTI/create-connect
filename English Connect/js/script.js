@@ -479,20 +479,16 @@ function arePhrasesExactMatch(userPhrase, correctPhrase) {
 function loadSession(sessionName) {
   sessionNameAtual = sessionName;
   currentSession = sessions[sessionName];
-
   carregarProgresso(sessionName);
   loadPhrase(currentPhraseIndex);
   updateProgressBar();
-
   exerciseSection.style.display = 'block';
   sessionSelection.style.display = 'none';
-
   salvarProgresso(sessionName);
 
-  setTimeout(() => {
-    exerciseSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 100);
+  document.getElementById("exercise-section").scrollIntoView({ behavior: "smooth" });
 }
+
 
 
 
