@@ -486,9 +486,9 @@ function loadSession(sessionName) {
   sessionSelection.style.display = 'none';
   salvarProgresso(sessionName);
 
-  document.getElementById("main-content").scrollIntoView({
+  exerciseSection.scrollIntoView({
     behavior: "smooth",
-    block: "start"
+    block: "end"
   });
 
 }
