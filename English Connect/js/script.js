@@ -486,12 +486,8 @@ function loadSession(sessionName) {
   sessionSelection.style.display = 'none';
   salvarProgresso(sessionName);
 
-  document.getElementById("exercise-section").scrollIntoView({ behavior: "smooth" });
+  document.getElementById("main-content").scrollIntoView({ behavior: "smooth" });
 }
-
-
-
-
 
 // Função para carregar a frase da sessão
 function loadPhrase(index) {
@@ -500,7 +496,7 @@ function loadPhrase(index) {
   translation.textContent = phrase.portuguese;
   phraseInput.value = "";
   feedback.textContent = "";
-  spokenPhraseOutput.textContent = ""; // Limpar a exibição da fala
+  spokenPhraseOutput.textContent = "";
   isWrittenCorrect = false;
   isSpeechCorrect = false;
 }

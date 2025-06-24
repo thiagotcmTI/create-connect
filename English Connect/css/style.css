@@ -9,19 +9,25 @@ body {
   font-family: 'Arial', sans-serif;
   background-color: black;
   color: white;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  min-height: 100vh;
+  flex-direction: column;
   overflow-x: hidden;
 }
 
+
 /* Container para o layout em grid */
 .container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-gap: 20px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  /* Centraliza horizontalmente */
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+  }
 }
 
 /* Estilos do painel esquerdo */
