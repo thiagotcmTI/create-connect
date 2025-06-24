@@ -486,7 +486,11 @@ function loadSession(sessionName) {
   sessionSelection.style.display = 'none';
   salvarProgresso(sessionName);
 
-  document.getElementById("main-content").scrollIntoView({ behavior: "smooth" });
+  document.getElementById("main-content").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
 }
 
 // Função para carregar a frase da sessão
