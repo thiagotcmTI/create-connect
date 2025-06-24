@@ -489,8 +489,11 @@ function loadSession(sessionName) {
 
   salvarProgresso(sessionName);
 
-  exerciseSection.scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => {
+    exerciseSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
 }
+
 
 
 
