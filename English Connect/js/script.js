@@ -477,15 +477,21 @@ function arePhrasesExactMatch(userPhrase, correctPhrase) {
 // Função para carregar frases da sessão selecionada
 
 function loadSession(sessionName) {
-  sessionNameAtual = sessionName; // salva globalmente
+  sessionNameAtual = sessionName;
   currentSession = sessions[sessionName];
+
   carregarProgresso(sessionName);
   loadPhrase(currentPhraseIndex);
   updateProgressBar();
+
   exerciseSection.style.display = 'block';
   sessionSelection.style.display = 'none';
+
   salvarProgresso(sessionName);
+
+  exerciseSection.scrollIntoView({ behavior: 'smooth' });
 }
+
 
 
 // Função para carregar a frase da sessão
@@ -530,7 +536,7 @@ function nextPhrase() {
       progress++;
       updateProgressBar();
       loadPhrase(currentPhraseIndex);
-      salvarProgresso(getSessionNameFromSession(currentSession)); // Salva aqui!
+      salvarProgresso(sessionNameAtual);
     } else {
       alert("Você completou todas as frases da sessão!");
     }
@@ -547,7 +553,7 @@ function prevPhrase() {
     progress--;
     updateProgressBar();
     loadPhrase(currentPhraseIndex);
-    salvarProgresso(getSessionNameFromSession(currentSession)); // Salva aqui também!
+    salvarProgresso(sessionNameAtual);
   }
 }
 
