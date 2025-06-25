@@ -486,13 +486,7 @@ function loadSession(sessionName) {
   sessionSelection.style.display = 'none';
   salvarProgresso(sessionName);
 
-  const bottom = exerciseSection.getBoundingClientRect().bottom + window.scrollY;
-  window.scrollTo({
-    top: bottom,
-    behavior: "smooth"
-  });
-
-
+  document.getElementById("baixo").scrollIntoView({ behavior: "smooth" });
 }
 
 // Função para carregar a frase da sessão
