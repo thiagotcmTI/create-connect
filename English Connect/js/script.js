@@ -394,7 +394,6 @@ let progress = 0;
 let isWrittenCorrect = false;
 let isSpeechCorrect = false;
 let playbackRate = 1; // Velocidade padrão: 1x
-let sessionNameAtual = "";
 
 // Elementos HTML
 const englishPhrase = document.getElementById("english-phrase");
@@ -414,26 +413,6 @@ const spokenPhraseOutput = document.getElementById("spoken-phrase"); // Exibe a 
 // Elementos do controle de velocidade (botão Speed e dropdown)
 const speedDropdown = document.getElementById("speed-dropdown");
 const speedOptions = document.getElementById("speed-options");
-
-function salvarProgresso(sessao) {
-  const progressoAtual = {
-    currentPhraseIndex,
-    progress
-  };
-  localStorage.setItem(`progresso_${sessao}`, JSON.stringify(progressoAtual));
-}
-
-function carregarProgresso(sessao) {
-  const salvo = localStorage.getItem(`progresso_${sessao}`);
-  if (salvo) {
-    const { currentPhraseIndex: fraseSalva, progress: progressoSalvo } = JSON.parse(salvo);
-    currentPhraseIndex = fraseSalva;
-    progress = progressoSalvo;
-  } else {
-    currentPhraseIndex = 0;
-    progress = 0;
-  }
-}
 
 // Função para calcular similaridade usando Levenshtein Distance
 function calculateLevenshteinDistance(a, b) {
@@ -475,18 +454,14 @@ function arePhrasesExactMatch(userPhrase, correctPhrase) {
 }
 
 // Função para carregar frases da sessão selecionada
-
 function loadSession(sessionName) {
-  sessionNameAtual = sessionName;
   currentSession = sessions[sessionName];
-  carregarProgresso(sessionName);
+  currentPhraseIndex = 0;
+  progress = 0;
   loadPhrase(currentPhraseIndex);
   updateProgressBar();
   exerciseSection.style.display = 'block';
   sessionSelection.style.display = 'none';
-  salvarProgresso(sessionName);
-
-  document.getElementById("baixo").scrollIntoView({ behavior: "smooth" });
 }
 
 // Função para carregar a frase da sessão
@@ -496,7 +471,7 @@ function loadPhrase(index) {
   translation.textContent = phrase.portuguese;
   phraseInput.value = "";
   feedback.textContent = "";
-  spokenPhraseOutput.textContent = "";
+  spokenPhraseOutput.textContent = ""; // Limpar a exibição da fala
   isWrittenCorrect = false;
   isSpeechCorrect = false;
 }
@@ -531,7 +506,6 @@ function nextPhrase() {
       progress++;
       updateProgressBar();
       loadPhrase(currentPhraseIndex);
-      salvarProgresso(sessionNameAtual);
     } else {
       alert("Você completou todas as frases da sessão!");
     }
@@ -541,14 +515,13 @@ function nextPhrase() {
   }
 }
 
-// Função para retornar para a frase anterior
+// Função para voltar à frase anterior
 function prevPhrase() {
   if (currentPhraseIndex > 0) {
     currentPhraseIndex--;
     progress--;
     updateProgressBar();
     loadPhrase(currentPhraseIndex);
-    salvarProgresso(sessionNameAtual);
   }
 }
 
