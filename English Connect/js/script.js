@@ -486,10 +486,12 @@ function loadSession(sessionName) {
   sessionSelection.style.display = 'none';
   salvarProgresso(sessionName);
 
-  exerciseSection.scrollIntoView({
-    behavior: "smooth",
-    block: "end"
+  const bottom = exerciseSection.getBoundingClientRect().bottom + window.scrollY;
+  window.scrollTo({
+    top: bottom,
+    behavior: "smooth"
   });
+
 
 }
 
