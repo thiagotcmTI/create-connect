@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create & Conect</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="preload" href="css/bg3.png" as="image">
+</head>
+
+<body>
+    <!-- Menu Lateral -->
+    <aside class="sidebar">
+
+        <div>
+            <img src="img\logo2.jpg"
+                style=" max-width: 150px; max-height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; ">
+        </div>
+        <h2>Create &<br> Conect</h2>
+        <nav>
+            <ul>
+                <li><a href="#header">Home</a></li>
+                <li><a href="#sobre">About</a></li>
+                <li><a href="#galeria">Projects</a></li>
+                <li><a href="#contato">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/create.e.connect"><img src="img/facebook-icon.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/create_e_connect/"><img src="img\instagram-icon.png" alt="Instagram"></a>
+            <a href="#"><img src="img\twitter-icon.png" alt="Twitter"></a>
+        </div>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <main class="content">
+        <!-- Header -->
+        <header id="header">
+            <h1 id="animated-text"></h1>
+        </header>
+
+        <!--Sobre-->
+        <section id="sobre" class="sobre">
+            <div class="informacoes">
+                <p id="about">About.</p>
+                <hr style="width:50px;border:5px solid rgb(39, 107, 231)">
+                <p id="texto">
+                    <br>
+                    Olá, meu nome é Thiago Correia de Melo, tenho 34 anos e sou brasileiro. Atualmente, estou cursando o
+                    4º período de Ciência da Computação, um campo que sempre despertou minha curiosidade e paixão. Meu
+                    interesse por tecnologia vai além dos estudos formais; gosto especialmente da criação de softwares,
+                    desenvolvimento de jogos e da busca constante por inovações que desafiem o comum e inspirem a
+                    criatividade.<br><br>
+
+                    Desde que me lembro, sempre fui alguém fascinado por explorar novas ideias. Para mim, a imaginação é
+                    uma ferramenta poderosa que não deve ter limites. Essa abordagem tem guiado meu caminho tanto na
+                    vida acadêmica quanto na profissional, me levando a enxergar problemas como oportunidades de
+                    aprendizado e crescimento.<br><br>
+
+                    Um dos aspectos que mais me encanta na área de Ciência da Computação é a possibilidade de
+                    transformar ideias em soluções reais. A criação de softwares e jogos, por exemplo, permite combinar
+                    lógica, criatividade e inovação para construir algo significativo. Essa mistura de arte e ciência é
+                    o que torna meu trabalho tão motivador. Além disso, vejo a inovação como uma oportunidade de
+                    impactar positivamente o mundo ao meu redor, contribuindo para melhorias na sociedade.<br><br>
+
+                    </hr>
+            </div>
+
+        </section>
+        <script src="js/script.js"></script>
+
+        <!-- Galeria de Fotos -->
+        <section id="galeria" class="galeria">
+            <div class="textogaleria">
+                <p>Projects.</p>
+                <hr style="width:50px;border:5px solid rgb(39, 107, 231)">
+            </div>
+            <a href="https://thiagotcmti.github.io/create-connect/English%20Connect/index.html"
+                style="text-decoration: none;">
+                <h1
+                    style="text-align: center; margin-bottom: 20px; color: rgb(253, 253, 253); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                    English Connect</h1>
+            </a>
+            <div class="gallery">
+                <img src="img\projeto1.png" alt="Imagem 1" class="zoomable" onclick="openImage(this)">
+                <img src="img\projeto2.png" alt="Imagem 2" class="zoomable" onclick="openImage(this)">
+            </div>
+
+            <a href="https://thiagotcmti.github.io/create-connect/Quiz%20Biblico/index.html"
+                style="text-decoration: none;">
+                <h1
+                    style="text-align: center; margin-bottom: 20px; margin-top: 50px; color: rgb(253, 253, 253); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                    Quiz Biblico</h1>
+            </a>
+            <div class="gallery">
+                <img src="img\quiz1.png" alt="Imagem 1" class="zoomable" onclick="openImage(this)">
+                <img src="img\quiz2.png" alt="Imagem 2" class="zoomable" onclick="openImage(this)">
+
+            </div>
+
+            <!-- Modal para exibição da imagem ampliada -->
+            <div id="modal" class="modal" onclick="closeImage()">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="modal-img">
+            </div>
+        </section>
+
+        <!-- Formulário de Contato -->
+        <section id="contato" class="contato">
+            <div class="textocontato">
+                <p>Contact.</p>
+                <hr style="width:50px;border:5px solid rgb(39, 107, 231)">
+            </div>
+
+
+            <form action="https://formsubmit.co/thiagotcm39@gmail.com" method="POST">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required>
+
+                <label for="mensagem">Mensagem:</label>
+                <input type="text" name="mensagem" id="mensagem" required placeholder="Escreva sua mensagem...">
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; Todos os direitos reservados à Thiago Melo</p>
+    </footer>
+
+</body>
+
+</html>
