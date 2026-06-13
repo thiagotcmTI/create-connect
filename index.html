@@ -4,128 +4,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create & Conect</title>
+    <meta name="theme-color" content="#111827">
+    <title>Thiago Melo | Desenvolvedor em formação</title>
+    <meta name="description"
+        content="Portfólio de Thiago Melo, estudante de Ciência da Computação focado em desenvolvimento web, interfaces interativas e soluções digitais.">
     <link href="css/style.css" rel="stylesheet">
-    <link rel="preload" href="css/bg3.png" as="image">
 </head>
 
 <body>
-    <!-- Menu Lateral -->
-    <aside class="sidebar">
+    <header class="site-header">
+        <a class="brand" href="#inicio" aria-label="Voltar ao início">
+            <img src="img/logo2.jpg" alt="Create & Connect">
+            <span>Create & Connect</span>
+        </a>
 
-        <div>
-            <img src="img\logo2.jpg"
-                style=" max-width: 150px; max-height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; ">
-        </div>
-        <h2>Create &<br> Conect</h2>
-        <nav>
-            <ul>
-                <li><a href="#header">Home</a></li>
-                <li><a href="#sobre">About</a></li>
-                <li><a href="#galeria">Projects</a></li>
-                <li><a href="#contato">Contact</a></li>
-            </ul>
+        <nav class="main-nav" aria-label="Navegação principal">
+            <a href="#sobre">Sobre</a>
+            <a href="#projetos">Projetos</a>
+            <a href="#habilidades">Habilidades</a>
+            <a href="#contato">Contato</a>
         </nav>
-        <!-- Ícones de Redes Sociais -->
-        <div class="social-icons">
-            <a href="https://www.facebook.com/create.e.connect"><img src="img/facebook-icon.png" alt="Facebook"></a>
-            <a href="https://www.instagram.com/create_e_connect/"><img src="img\instagram-icon.png" alt="Instagram"></a>
-            <a href="#"><img src="img\twitter-icon.png" alt="Twitter"></a>
-        </div>
-    </aside>
+    </header>
 
-    <!-- Conteúdo Principal -->
-    <main class="content">
-        <!-- Header -->
-        <header id="header">
-            <h1 id="animated-text"></h1>
-        </header>
-
-        <!--Sobre-->
-        <section id="sobre" class="sobre">
-            <div class="informacoes">
-                <p id="about">About.</p>
-                <hr style="width:50px;border:5px solid rgb(39, 107, 231)">
-                <p id="texto">
-                    <br>
-                    Olá, meu nome é Thiago Correia de Melo, tenho 34 anos e sou brasileiro. Atualmente, estou cursando o
-                    5º período de Ciência da Computação, um campo que sempre despertou minha curiosidade e paixão. Meu
-                    interesse por tecnologia vai além dos estudos formais; gosto especialmente da criação de softwares,
-                    desenvolvimento de jogos e da busca constante por inovações que desafiem o comum e inspirem a
-                    criatividade.<br><br>
-
-                    </hr>
+    <main>
+        <section class="hero" id="inicio">
+            <div class="hero-background" aria-hidden="true"></div>
+            <div class="hero-content">
+                <p class="eyebrow">Portfólio de desenvolvimento</p>
+                <h1>Thiago Melo</h1>
+                <p class="hero-lead">
+                    Desenvolvedor em formação, focado em criar experiências web claras, responsivas e úteis para
+                    pessoas reais.
+                </p>
+                <div class="hero-actions">
+                    <a class="button primary" href="#projetos">Ver projetos</a>
+                    <a class="button secondary" href="#contato">Falar comigo</a>
+                </div>
             </div>
-
-        </section>
-
-        <script src="js/script.js"></script>
-
-        <!-- Galeria de Fotos -->
-        <section id="galeria" class="galeria" style="text-align: center;">
-
-            <div class="textogaleria">
-                <p>Projects.</p>
-                <hr style="width:50px;border:5px solid rgb(39, 107, 231)">
-            </div>
-
-            <a href="https://thiagotcmti.github.io/english-connect/" style="text-decoration: none;">
-                <h1 class="project-button">English Connect</h1>
-            </a>
-
-            <div class="gallery">
-                <img src="img\projeto1.png" alt="Imagem 1" class="zoomable" onclick="openImage(this)">
-                <img src="img\projeto2.png" alt="Imagem 2" class="zoomable" onclick="openImage(this)">
-            </div>
-
-            <a href="https://thiagotcmti.github.io/quiz-biblico/" style="text-decoration: none;">
-                <h1 class="project-button">Quiz Biblico</h1>
-            </a>
-
-            <div class="gallery">
-                <img src="img\quiz1.png" alt="Imagem 1" class="zoomable" onclick="openImage(this)">
-                <img src="img\quiz2.png" alt="Imagem 2" class="zoomable" onclick="openImage(this)">
-            </div>
-
-            <!-- Modal para exibição da imagem ampliada -->
-            <div id="modal" class="modal" onclick="closeImage()">
-                <span class="close">&times;</span>
-                <img class="modal-content" id="modal-img">
+            <div class="hero-panel" aria-label="Resumo profissional">
+                <span class="panel-label">Agora</span>
+                <strong>Ciência da Computação</strong>
+                <p>Estudando fundamentos, praticando com projetos próprios e evoluindo em front-end, lógica e produto.</p>
             </div>
         </section>
 
-        <!-- Formulário de Contato -->
-        <section id="contato" class="contato">
-
-            <div class="textocontato">
-                <p>Contact.</p>
-                <hr style="width:50px;border:5px solid rgb(39, 107, 231)">
+        <section class="section about" id="sobre">
+            <div class="section-heading">
+                <p class="eyebrow">Sobre</p>
+                <h2>Perfil direto, prático e em evolução constante.</h2>
             </div>
 
+            <div class="about-grid">
+                <article class="about-card main">
+                    <p>
+                        Sou Thiago Correia de Melo, estudante de Ciência da Computação e criador do Create & Connect.
+                        Tenho interesse em desenvolvimento web, interfaces interativas e soluções que transformam ideias
+                        em produtos funcionais. Busco oportunidades para aplicar meus conhecimentos, aprender com times
+                        experientes e entregar projetos com boa usabilidade, organização e propósito.
+                    </p>
+                </article>
 
-            <form action="https://formsubmit.co/thiagotcm39@gmail.com" method="POST">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
+                <article class="about-card">
+                    <strong>Foco atual</strong>
+                    <p>HTML, CSS, JavaScript, responsividade, lógica de programação e construção de aplicações web.</p>
+                </article>
 
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required>
+                <article class="about-card">
+                    <strong>Diferencial</strong>
+                    <p>Gosto de aprender criando: prototipar, testar, melhorar a interface e entender a experiência do usuário.</p>
+                </article>
+            </div>
+        </section>
 
-                <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone" name="telefone" required>
+        <section class="section projects" id="projetos">
+            <div class="section-heading">
+                <p class="eyebrow">Projetos</p>
+                <h2>Projetos próprios com foco em aprendizado e experiência de uso.</h2>
+            </div>
 
-                <label for="mensagem">Mensagem:</label>
-                <input type="text" name="mensagem" id="mensagem" required placeholder="Escreva sua mensagem...">
+            <div class="project-grid">
+                <article class="project-card featured">
+                    <a class="project-media" href="EnglishConnect/index.html" aria-label="Abrir English Connect">
+                        <img src="img/projeto1.png" alt="Prévia do projeto English Connect">
+                    </a>
+                    <div class="project-body">
+                        <div>
+                            <p class="project-type">Aplicação educacional</p>
+                            <h3>English Connect</h3>
+                            <p>
+                                App para prática de inglês baseado em frases, com escrita, reconhecimento de fala,
+                                reprodução em voz alta, controle de velocidade, progresso e geração de exercícios por
+                                tema e nível.
+                            </p>
+                        </div>
+                        <div class="tags" aria-label="Tecnologias e recursos">
+                            <span>JavaScript</span>
+                            <span>Web Speech API</span>
+                            <span>Responsivo</span>
+                        </div>
+                        <a class="text-link" href="EnglishConnect/index.html">Abrir projeto</a>
+                    </div>
+                </article>
 
-                <button type="submit">Enviar</button>
-            </form>
+                <article class="project-card">
+                    <a class="project-media" href="EnglishConnect/index.html" aria-label="Abrir evolução visual do English Connect">
+                        <img src="img/projeto2.png" alt="Segunda prévia do English Connect">
+                    </a>
+                    <div class="project-body">
+                        <div>
+                            <p class="project-type">UX e interface</p>
+                            <h3>Modernização de estudo</h3>
+                            <p>
+                                Reestruturação da experiência para tornar o fluxo mais simples: escolher tema, treinar,
+                                receber feedback e acompanhar evolução.
+                            </p>
+                        </div>
+                        <div class="tags" aria-label="Áreas trabalhadas">
+                            <span>UI</span>
+                            <span>UX</span>
+                            <span>Acessibilidade</span>
+                        </div>
+                        <a class="text-link" href="EnglishConnect/index.html">Ver experiência</a>
+                    </div>
+                </article>
+
+                <article class="project-card muted-card">
+                    <div class="project-placeholder">
+                        <span>Próximo</span>
+                    </div>
+                    <div class="project-body">
+                        <div>
+                            <p class="project-type">Em construção</p>
+                            <h3>Novas ideias digitais</h3>
+                            <p>
+                                Espaço preparado para adicionar futuros projetos, com descrição objetiva, tecnologias,
+                                imagem real e link de demonstração.
+                            </p>
+                        </div>
+                        <div class="tags">
+                            <span>Produto</span>
+                            <span>Web</span>
+                            <span>Portfolio</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section skills" id="habilidades">
+            <div class="section-heading">
+                <p class="eyebrow">Habilidades</p>
+                <h2>Base técnica em desenvolvimento web e atenção à experiência.</h2>
+            </div>
+
+            <div class="skills-grid">
+                <article>
+                    <strong>Front-end</strong>
+                    <p>HTML semântico, CSS responsivo, JavaScript e organização de interfaces.</p>
+                </article>
+                <article>
+                    <strong>Produto</strong>
+                    <p>Transformação de ideias em fluxos utilizáveis, com foco em clareza e melhoria contínua.</p>
+                </article>
+                <article>
+                    <strong>Aprendizado</strong>
+                    <p>Estudo constante de lógica, boas práticas, usabilidade e fundamentos de Ciência da Computação.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section contact" id="contato">
+            <div class="contact-card">
+                <div>
+                    <p class="eyebrow">Contato</p>
+                    <h2>Vamos conversar sobre oportunidades, projetos ou colaboração?</h2>
+                    <p>
+                        Estou aberto a aprender, contribuir e participar de projetos que desafiem minha evolução como
+                        desenvolvedor.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/create.e.connect">Facebook</a>
+                        <a href="https://www.instagram.com/create_e_connect/">Instagram</a>
+                    </div>
+                </div>
+
+                <form action="https://formsubmit.co/thiagotcm39@gmail.com" method="POST">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" required>
+
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone">
+
+                    <label for="mensagem">Mensagem</label>
+                    <textarea name="mensagem" id="mensagem" required placeholder="Conte rapidamente como posso ajudar"></textarea>
+
+                    <button class="button primary" type="submit">Enviar mensagem</button>
+                </form>
+            </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
-        <p>&copy; Todos os direitos reservados à Thiago Melo</p>
+        <p>&copy; 2026 Thiago Melo. Create & Connect.</p>
     </footer>
-
+    <script src="js/script.js"></script>
 </body>
 
 </html>
