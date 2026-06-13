@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101828">
+  <title>English Connect</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <main class="app-shell">
+    <section class="hero" id="home-screen">
+      <div class="hero__content">
+        <p class="eyebrow">Create & Connect</p>
+        <h1>English Connect</h1>
+        <p class="hero__copy">
+          Pratique frases reais, escute a pronuncia, escreva, fale em voz alta e avance no seu ritmo.
+        </p>
+
+        <div class="hero__actions">
+          <button class="primary-action" id="start-app">Comecar agora</button>
+          <button class="ghost-action" id="demo-lesson">Ver aula rapida</button>
+        </div>
+      </div>
+
+      <div class="hero__panel" aria-label="Resumo da metodologia">
+        <div class="metric">
+          <span id="global-score">0%</span>
+          <small>progresso geral</small>
+        </div>
+        <div class="learning-card">
+          <strong>Metodo simples</strong>
+          <p>Ouvir, entender, escrever, falar e revisar.</p>
+        </div>
+        <div class="learning-card">
+          <strong>Ajuste por idade e nivel</strong>
+          <p>Frases curtas para iniciantes e desafios maiores para evoluir.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace" id="study-screen" hidden>
+      <header class="topbar">
+        <button class="icon-button" id="back-home" aria-label="Voltar para inicio">‹</button>
+        <div>
+          <p class="eyebrow">Sessao de pratica</p>
+          <h2>Escolha como quer treinar hoje</h2>
+        </div>
+      </header>
+
+      <section class="setup-panel" aria-label="Configuracao da aula">
+        <div class="field-group">
+          <label for="topic-select">Tema</label>
+          <select id="topic-select">
+            <option value="social">Conversas sociais</option>
+            <option value="travel">Viagens</option>
+            <option value="work">Trabalho</option>
+            <option value="food">Comida</option>
+            <option value="sports">Esportes</option>
+            <option value="daily">Rotina diaria</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="level-select">Nivel</label>
+          <select id="level-select">
+            <option value="beginner">Iniciante</option>
+            <option value="basic">Basico</option>
+            <option value="intermediate">Intermediario</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label for="age-select">Perfil</label>
+          <select id="age-select">
+            <option value="teen">Jovem/adulto</option>
+            <option value="child">Crianca</option>
+            <option value="adult">Adulto profissional</option>
+          </select>
+        </div>
+
+        <button class="primary-action compact" id="build-lesson">Gerar aula</button>
+      </section>
+
+      <section class="lesson-grid">
+        <aside class="side-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Hoje</p>
+            <h3 id="lesson-title">Conversas sociais</h3>
+          </div>
+
+          <div class="progress-ring" aria-label="Progresso da aula">
+            <span id="lesson-progress">0%</span>
+          </div>
+
+          <div class="lesson-stats">
+            <div>
+              <strong id="current-step-label">1/1</strong>
+              <small>frase atual</small>
+            </div>
+            <div>
+              <strong id="streak-label">0</strong>
+              <small>sequencia</small>
+            </div>
+          </div>
+
+          <div class="exercise-tabs" role="tablist" aria-label="Modos de exercicio">
+            <button class="tab is-active" data-mode="write">Escrever</button>
+            <button class="tab" data-mode="speak">Falar</button>
+            <button class="tab" data-mode="quiz">Quiz</button>
+          </div>
+        </aside>
+
+        <section class="practice-panel" aria-live="polite">
+          <div class="phrase-header">
+            <p class="eyebrow" id="challenge-label">Digite a frase em ingles</p>
+            <button class="ghost-action small" id="hint-button">Dica</button>
+          </div>
+
+          <article class="phrase-card">
+            <p class="translation" id="translation-text">Clique em gerar aula para comecar.</p>
+            <h3 id="english-text">English Connect</h3>
+            <p class="hint" id="hint-text" hidden></p>
+          </article>
+
+          <div class="audio-row">
+            <button class="secondary-action" id="listen-button">Ouvir</button>
+            <label for="speed-range">Velocidade</label>
+            <input type="range" id="speed-range" min="0.6" max="1.1" step="0.1" value="0.8">
+            <span id="speed-label">0.8x</span>
+          </div>
+
+          <div class="exercise-area" id="write-area">
+            <label for="answer-input">Sua resposta</label>
+            <input id="answer-input" type="text" autocomplete="off" placeholder="Escreva a frase em ingles">
+            <button class="primary-action compact" id="check-answer">Verificar escrita</button>
+          </div>
+
+          <div class="exercise-area" id="speak-area" hidden>
+            <label for="spoken-output">Sua pronuncia</label>
+            <textarea id="spoken-output" readonly placeholder="O que voce falar aparece aqui"></textarea>
+            <button class="primary-action compact" id="start-speech">Falar agora</button>
+          </div>
+
+          <div class="exercise-area quiz-options" id="quiz-area" hidden></div>
+
+          <div class="feedback" id="feedback">Escolha um tema e gere uma aula para iniciar.</div>
+
+          <div class="navigation-row">
+            <button class="ghost-action" id="prev-button">Anterior</button>
+            <button class="primary-action" id="next-button">Proxima frase</button>
+          </div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
