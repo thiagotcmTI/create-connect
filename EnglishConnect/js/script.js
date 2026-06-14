@@ -44,7 +44,7 @@ const topics = {
     title: "Esportes",
     scenes: [
       { thing: "soccer", thingPt: "futebol", action: "play", actionPt: "jogar", place: "on the field", placePt: "no campo" },
-      { thing: "tennis", thingPt: "tenis", action: "practice", actionPt: "praticar", place: "after work", placePt: "depois do trabalho" },
+      { thing: "tennis", thingPt: "tênis", action: "practice", actionPt: "praticar", place: "after work", placePt: "depois do trabalho" },
       { thing: "swimming", thingPt: "natacao", action: "learn", actionPt: "aprender", place: "at the gym", placePt: "na academia" },
       { thing: "basketball", thingPt: "basquete", action: "watch", actionPt: "assistir", place: "with my friends", placePt: "com meus amigos" },
     ],
@@ -71,19 +71,19 @@ const levels = {
     ],
   },
   basic: {
-    title: "Basico",
+    title: "Básico",
     templates: [
       ({ action, actionPt, thing, thingPt, place, placePt }) => [`I usually ${action} ${thing} ${place}.`, `Eu geralmente ${actionPt} ${thingPt} ${placePt}.`],
-      ({ thing, thingPt }) => [`Can you help me with ${thing}?`, `Voce pode me ajudar com ${thingPt}?`],
+      ({ thing, thingPt }) => [`Can you help me with ${thing}?`, `Você pode me ajudar com ${thingPt}?`],
       ({ place, placePt }) => [`I need more time ${place}.`, `Eu preciso de mais tempo ${placePt}.`],
       ({ action, actionPt, thing, thingPt }) => [`She wants to ${action} ${thing} today.`, `Ela quer ${actionPt} ${thingPt} hoje.`],
     ],
   },
   intermediate: {
-    title: "Intermediario",
+    title: "Intermediário",
     templates: [
       ({ action, actionPt, thing, thingPt, place, placePt }) => [`I have been trying to ${action} ${thing} ${place}.`, `Eu tenho tentado ${actionPt} ${thingPt} ${placePt}.`],
-      ({ thing, thingPt }) => [`Could you explain why ${thing} is important?`, `Voce poderia explicar por que ${thingPt} e importante?`],
+      ({ thing, thingPt }) => [`Could you explain why ${thing} is important?`, `Você poderia explicar por que ${thingPt} é importante?`],
       ({ action, actionPt, thing, thingPt }) => [`If I have enough time, I will ${action} ${thing}.`, `Se eu tiver tempo suficiente, eu vou ${actionPt} ${thingPt}.`],
       ({ place, placePt }) => [`I feel more confident when I practice ${place}.`, `Eu me sinto mais confiante quando pratico ${placePt}.`],
     ],
@@ -224,7 +224,7 @@ async function buildApiLesson(topicKey, levelKey, ageProfile) {
   });
 
   if (!response.ok) {
-    throw new Error("Nao foi possivel gerar a aula pela API.");
+    throw new Error("Não foi possível gerar a aula pela API.");
   }
 
   const data = await response.json();
@@ -248,13 +248,13 @@ async function generateLesson() {
     state.speakOk = false;
     els.lessonTitle.textContent = `${topics[topicKey].title} · ${levels[levelKey].title}`;
     renderPhrase();
-    setFeedback(apiLesson ? "Aula gerada pela API." : "Aula gerada localmente. Quando voce ligar uma API, este fluxo ja esta preparado.", "success");
+    setFeedback(apiLesson ? "Aula gerada pela API." : "Aula gerada localmente. Quando você ligar uma API, este fluxo já está preparado.", "success");
   } catch (error) {
     state.lesson = buildLocalLesson(topicKey, levelKey, ageProfile);
     state.index = 0;
     state.completed = new Set();
     renderPhrase();
-    setFeedback("A API nao respondeu, entao gerei uma aula local para voce continuar praticando.", "warning");
+    setFeedback("A API não respondeu, então gerei uma aula local para você continuar praticando.", "warning");
   } finally {
     els.buildLesson.disabled = false;
   }
@@ -265,7 +265,7 @@ function renderPhrase() {
   const hasLesson = Boolean(phrase);
 
   els.english.textContent = hasLesson ? phrase.english : "English Connect";
-  els.translation.textContent = hasLesson ? phrase.portuguese : "Clique em gerar aula para comecar.";
+  els.translation.textContent = hasLesson ? phrase.portuguese : "Clique em gerar aula para começar.";
   els.hint.textContent = hasLesson ? phrase.hint : "";
   els.hint.hidden = true;
   els.answer.value = "";
@@ -296,7 +296,7 @@ function buildQuizOptions() {
     button.addEventListener("click", () => {
       if (option === phrase.portuguese) {
         state.writeOk = true;
-        setFeedback("Boa! Voce reconheceu o significado da frase.", "success");
+        setFeedback("Boa! Você reconheceu o significado da frase.", "success");
       } else {
         setFeedback("Quase. Leia a frase de novo e tente ligar ao sentido completo.", "error");
       }
@@ -337,13 +337,13 @@ function checkWrittenAnswer() {
 
   if (score >= 0.96) {
     state.writeOk = true;
-    setFeedback("Escrita perfeita. Agora treine a fala ou avance se ja pronunciou.", "success");
+    setFeedback("Escrita perfeita. Agora treine a fala ou avance se já pronunciou.", "success");
   } else if (score >= 0.82) {
     state.writeOk = true;
     setFeedback("Muito perto. Aceitei a resposta, mas revise pequenos detalhes de escrita.", "warning");
   } else {
     state.writeOk = false;
-    setFeedback(`Ainda nao. Compare com calma: "${phrase.english}"`, "error");
+    setFeedback(`Ainda não. Compare com calma: "${phrase.english}"`, "error");
   }
 }
 
@@ -366,7 +366,7 @@ function startSpeechRecognition() {
   if (!phrase) return;
 
   if (!SpeechRecognition) {
-    setFeedback("Este navegador nao liberou reconhecimento de fala. No Android, teste pelo Chrome.", "error");
+    setFeedback("Este navegador não liberou reconhecimento de fala. No Android, teste pelo Chrome.", "error");
     return;
   }
 
@@ -375,7 +375,7 @@ function startSpeechRecognition() {
   recognition.interimResults = false;
   recognition.maxAlternatives = 1;
 
-  setFeedback("Estou ouvindo. Fale a frase em ingles.", "warning");
+  setFeedback("Estou ouvindo. Fale a frase em inglês.", "warning");
   recognition.start();
 
   recognition.onresult = (event) => {
@@ -385,15 +385,15 @@ function startSpeechRecognition() {
 
     if (score >= 0.86) {
       state.speakOk = true;
-      setFeedback("Pronuncia aceita. Otimo ritmo.", "success");
+      setFeedback("Pronúncia aceita. Ótimo ritmo.", "success");
     } else {
       state.speakOk = false;
-      setFeedback(`Voce disse "${spoken}". Escute novamente e tente mais uma vez.`, "error");
+      setFeedback(`Você disse "${spoken}". Escute novamente e tente mais uma vez.`, "error");
     }
   };
 
   recognition.onerror = () => {
-    setFeedback("Nao consegui captar a fala. Verifique o microfone e tente novamente.", "error");
+    setFeedback("Não consegui captar a fala. Verifique o microfone e tente novamente.", "error");
   };
 }
 
@@ -419,10 +419,10 @@ function goNext() {
   if (state.index < state.lesson.length - 1) {
     state.index += 1;
     renderPhrase();
-    setFeedback("Proxima frase pronta.", "info");
+    setFeedback("Próxima frase pronta.", "info");
   } else {
     updateProgress();
-    setFeedback("Aula concluida. Gere outra aula com tema ou nivel diferente para continuar.", "success");
+    setFeedback("Aula concluída. Gere outra aula com tema ou nível diferente para continuar.", "success");
   }
 }
 
@@ -442,7 +442,7 @@ function switchMode(mode) {
   els.quizArea.hidden = mode !== "quiz";
 
   const labels = {
-    write: "Digite a frase em ingles",
+    write: "Digite a frase em inglês",
     speak: "Pronuncie a frase em voz alta",
     quiz: "Escolha a traducao correta",
   };
