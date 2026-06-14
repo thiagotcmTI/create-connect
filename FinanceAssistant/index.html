@@ -5,124 +5,234 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0f172a">
-    <title>Assistente Financeiro | Create & Connect</title>
-    <meta name="description"
-        content="Demo interativa do Assistente Financeiro para cadastro de ativos, acompanhamento de carteira e visualizacao de desempenho.">
+    <title>Assistente Financeiro | Bolso Patrimonial</title>
     <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="css/style.css?v=20260614-1">
+    <link href="./css/style.css?v=20260614-2" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <header class="app-header">
-        <a class="back-link" href="../index.html#projetos" aria-label="Voltar para o portfolio">Voltar</a>
-        <div>
-            <p class="eyebrow">Projeto em desenvolvimento</p>
-            <h1>Assistente Financeiro</h1>
-        </div>
-        <span class="status-pill">Demo web</span>
+    <a class="portfolio-link" href="../index.html#projetos">Voltar ao portfolio</a>
+    <header class="market-strip" aria-label="Cotações em destaque">
+        <div class="ticker-track" id="tickerTrack"></div>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero-copy">
-                <p class="eyebrow">Carteira pessoal</p>
-                <h2>Organize ativos, simule cotacoes e acompanhe sua evolucao.</h2>
-                <p>
-                    Esta versao foi adaptada para abrir direto pelo navegador. Os dados ficam salvos apenas neste
-                    dispositivo e as cotacoes sao simuladas para demonstracao visual do projeto.
-                </p>
+    <main class="app-shell">
+        <section class="hero-panel">
+            <div>
+                <p class="eyebrow">Gestão financeira de bolso</p>
+                <h1>Seu patrimônio em uma visão única.</h1>
+                <p class="hero-copy">Acompanhe cripto, ações, ETFs, moedas, CDB, Tesouro, Selic e poupança com dados locais, atualização online e projeções rápidas.</p>
+            </div>
+            <div class="sync-card">
+                <span class="status-dot" id="connectionDot"></span>
+                <div>
+                    <strong id="connectionLabel">Verificando conexão</strong>
+                    <small id="lastSyncLabel">Nenhuma atualização realizada</small>
+                </div>
+                <button class="icon-button" id="refreshButton" title="Atualizar cotações">↻</button>
+            </div>
+        </section>
+
+        <nav class="tabbar" aria-label="Áreas do app">
+            <button class="tab active" data-tab="overview">Carteira</button>
+            <button class="tab" data-tab="volatile">Ativos</button>
+            <button class="tab" data-tab="fixed">Renda fixa</button>
+            <button class="tab" data-tab="tools">Ferramentas</button>
+            <button class="tab" data-tab="insights">Insights</button>
+        </nav>
+
+        <section class="tab-panel active" id="overview">
+            <div class="summary-grid">
+                <article class="metric-card">
+                    <span>Total atual</span>
+                    <strong id="totalPatrimony">R$ 0,00</strong>
+                    <small id="totalInvested">Investido: R$ 0,00</small>
+                </article>
+                <article class="metric-card">
+                    <span>Resultado</span>
+                    <strong id="totalGain">R$ 0,00</strong>
+                    <small id="totalGainPercent">0,00%</small>
+                </article>
+                <article class="metric-card">
+                    <span>Ativos cadastrados</span>
+                    <strong id="assetCount">0</strong>
+                    <small id="riskMix">Sem composição</small>
+                </article>
+                <article class="metric-card">
+                    <span>Próxima atualização</span>
+                    <strong id="nextSync">2 min</strong>
+                    <small>Quando houver internet</small>
+                </article>
             </div>
 
-            <div class="summary-grid" aria-label="Resumo da carteira">
-                <article>
-                    <span>Total investido</span>
-                    <strong id="totalInvested">R$ 0,00</strong>
+            <div class="workspace-grid">
+                <form class="asset-form" id="assetForm">
+                    <h2>Novo investimento</h2>
+                    <label>Categoria
+                        <select id="assetCategory" required></select>
+                    </label>
+                    <label id="fixedTypeWrap" class="hidden">Tipo de renda fixa
+                        <select id="fixedType"></select>
+                    </label>
+                    <label>Nome ou código
+                        <input id="assetName" type="text" placeholder="Ex.: BTC, PETR4, Tesouro Selic" required>
+                    </label>
+                    <div class="form-row">
+                        <label>Preço de compra
+                            <input id="assetBuyPrice" type="number" min="0" step="0.01" required>
+                        </label>
+                        <label>Quantidade
+                            <input id="assetQuantity" type="number" min="0" step="0.00000001" required>
+                        </label>
+                    </div>
+                    <label>Aporte mensal opcional
+                        <input id="monthlyContribution" type="number" min="0" step="0.01" placeholder="Para projeções">
+                    </label>
+                    <button class="primary-button" type="submit">Adicionar investimento</button>
+                </form>
+
+                <article class="chart-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h2>Distribuição da carteira</h2>
+                            <p>Separada por tipo de investimento.</p>
+                        </div>
+                        <select id="chartMode">
+                            <option value="allocation">Alocação</option>
+                            <option value="performance">Resultado</option>
+                        </select>
+                    </div>
+                    <canvas id="portfolioChart"></canvas>
                 </article>
-                <article>
-                    <span>Valor atual</span>
-                    <strong id="currentValue">R$ 0,00</strong>
+            </div>
+
+            <article class="table-panel">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Investimentos cadastrados</h2>
+                        <p>Valores salvos no aparelho e atualizados quando possível.</p>
+                    </div>
+                    <button class="secondary-button" id="exportButton">Exportar dados</button>
+                </div>
+                <div class="responsive-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ativo</th>
+                                <th>Tipo</th>
+                                <th>Compra</th>
+                                <th>Atual</th>
+                                <th>Total</th>
+                                <th>Resultado</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="assetRows"></tbody>
+                    </table>
+                </div>
+            </article>
+        </section>
+
+        <section class="tab-panel" id="volatile">
+            <div class="section-grid">
+                <article class="chart-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h2>Ativos voláteis</h2>
+                            <p>Cripto, ações, ETFs, FIIs e moedas.</p>
+                        </div>
+                        <select id="volatileAssetSelect"></select>
+                    </div>
+                    <canvas id="assetChart"></canvas>
                 </article>
-                <article>
-                    <span>Resultado</span>
-                    <strong id="portfolioResult">R$ 0,00</strong>
+                <article class="info-panel">
+                    <h2>Leitura rápida</h2>
+                    <ul id="volatileInsights"></ul>
                 </article>
             </div>
         </section>
 
-        <section class="workspace">
-            <form class="asset-form" id="assetForm">
-                <div class="form-heading">
-                    <p class="eyebrow">Novo ativo</p>
-                    <h2>Cadastrar investimento</h2>
-                </div>
-
-                <label for="assetType">Tipo</label>
-                <select id="assetType" required>
-                    <option value="Acao">Acao</option>
-                    <option value="ETF">ETF</option>
-                    <option value="Crypto">Crypto</option>
-                    <option value="Moeda">Moeda</option>
-                    <option value="Renda fixa">Renda fixa</option>
-                </select>
-
-                <label for="assetName">Nome ou ticker</label>
-                <input id="assetName" type="text" placeholder="Ex: PETR4, BTC, DOLAR" required>
-
-                <div class="field-row">
-                    <div>
-                        <label for="assetQuantity">Quantidade</label>
-                        <input id="assetQuantity" type="number" min="0" step="0.01" placeholder="10" required>
+        <section class="tab-panel" id="fixed">
+            <div class="section-grid">
+                <article class="info-panel">
+                    <h2>Renda fixa e poupança</h2>
+                    <div class="fixed-summary">
+                        <strong id="fixedTotal">R$ 0,00</strong>
+                        <span>Total estimado em renda fixa</span>
                     </div>
-                    <div>
-                        <label for="assetPrice">Preco medio</label>
-                        <input id="assetPrice" type="number" min="0" step="0.01" placeholder="32.50" required>
-                    </div>
-                </div>
-
-                <button type="submit">Adicionar ativo</button>
-                <button class="ghost-button" id="loadSample" type="button">Carregar exemplo</button>
-            </form>
-
-            <section class="dashboard" aria-label="Painel financeiro">
-                <div class="panel chart-panel">
+                    <div class="rate-list" id="rateList"></div>
+                </article>
+                <article class="chart-panel">
                     <div class="panel-heading">
                         <div>
-                            <p class="eyebrow">Desempenho</p>
-                            <h2>Distribuicao da carteira</h2>
+                            <h2>Projeção por taxa</h2>
+                            <p>Estimativa mensal composta para produtos conservadores.</p>
                         </div>
-                        <button class="ghost-button small" id="clearPortfolio" type="button">Limpar</button>
+                        <select id="fixedProjectionAsset"></select>
                     </div>
-                    <canvas id="portfolioChart" width="680" height="320" aria-label="Grafico da carteira"></canvas>
-                </div>
+                    <canvas id="fixedChart"></canvas>
+                </article>
+            </div>
+        </section>
 
-                <div class="panel">
+        <section class="tab-panel" id="tools">
+            <div class="tools-grid">
+                <article class="calculator-panel">
+                    <h2>Calculadora financeira</h2>
+                    <div class="form-row">
+                        <label>Valor inicial
+                            <input id="calcInitial" type="number" min="0" step="0.01" value="1000">
+                        </label>
+                        <label>Aporte mensal
+                            <input id="calcMonthly" type="number" min="0" step="0.01" value="200">
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label>Taxa ao ano (%)
+                            <input id="calcRate" type="number" step="0.01" value="10.65">
+                        </label>
+                        <label>Prazo (meses)
+                            <input id="calcMonths" type="number" min="1" step="1" value="24">
+                        </label>
+                    </div>
+                    <button class="primary-button" id="calculateButton">Calcular projeção</button>
+                    <div class="projection-result" id="projectionResult"></div>
+                </article>
+
+                <article class="sheet-panel">
                     <div class="panel-heading">
                         <div>
-                            <p class="eyebrow">Ativos</p>
-                            <h2>Carteira atual</h2>
+                            <h2>Planilha editável</h2>
+                            <p>Controle mensal de orçamento, metas e aportes.</p>
                         </div>
+                        <button class="secondary-button" id="addSheetRow">Nova linha</button>
                     </div>
-                    <div class="table-wrap">
-                        <table>
+                    <div class="responsive-table">
+                        <table class="editable-sheet">
                             <thead>
                                 <tr>
-                                    <th>Ativo</th>
-                                    <th>Tipo</th>
-                                    <th>Qtd.</th>
-                                    <th>Atual</th>
-                                    <th></th>
+                                    <th>Mês</th>
+                                    <th>Receitas</th>
+                                    <th>Despesas</th>
+                                    <th>Aportes</th>
+                                    <th>Meta</th>
+                                    <th>Saldo</th>
                                 </tr>
                             </thead>
-                            <tbody id="assetTable"></tbody>
+                            <tbody id="sheetRows"></tbody>
                         </table>
                     </div>
-                    <p class="empty-state" id="emptyState">Cadastre um ativo ou carregue o exemplo para visualizar a carteira.</p>
-                </div>
-            </section>
+                </article>
+            </div>
+        </section>
+
+        <section class="tab-panel" id="insights">
+            <div class="insight-board" id="insightBoard"></div>
         </section>
     </main>
 
-    <script src="js/app.js?v=20260614-1"></script>
+    <script src="./js/script.js?v=20260614-2"></script>
 </body>
 
 </html>
