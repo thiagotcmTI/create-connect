@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0f172a">
+    <title>Assistente Financeiro | Create & Connect</title>
+    <meta name="description"
+        content="Demo interativa do Assistente Financeiro para cadastro de ativos, acompanhamento de carteira e visualizacao de desempenho.">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="css/style.css?v=20260614-1">
+</head>
+
+<body>
+    <header class="app-header">
+        <a class="back-link" href="../index.html#projetos" aria-label="Voltar para o portfolio">Voltar</a>
+        <div>
+            <p class="eyebrow">Projeto em desenvolvimento</p>
+            <h1>Assistente Financeiro</h1>
+        </div>
+        <span class="status-pill">Demo web</span>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Carteira pessoal</p>
+                <h2>Organize ativos, simule cotacoes e acompanhe sua evolucao.</h2>
+                <p>
+                    Esta versao foi adaptada para abrir direto pelo navegador. Os dados ficam salvos apenas neste
+                    dispositivo e as cotacoes sao simuladas para demonstracao visual do projeto.
+                </p>
+            </div>
+
+            <div class="summary-grid" aria-label="Resumo da carteira">
+                <article>
+                    <span>Total investido</span>
+                    <strong id="totalInvested">R$ 0,00</strong>
+                </article>
+                <article>
+                    <span>Valor atual</span>
+                    <strong id="currentValue">R$ 0,00</strong>
+                </article>
+                <article>
+                    <span>Resultado</span>
+                    <strong id="portfolioResult">R$ 0,00</strong>
+                </article>
+            </div>
+        </section>
+
+        <section class="workspace">
+            <form class="asset-form" id="assetForm">
+                <div class="form-heading">
+                    <p class="eyebrow">Novo ativo</p>
+                    <h2>Cadastrar investimento</h2>
+                </div>
+
+                <label for="assetType">Tipo</label>
+                <select id="assetType" required>
+                    <option value="Acao">Acao</option>
+                    <option value="ETF">ETF</option>
+                    <option value="Crypto">Crypto</option>
+                    <option value="Moeda">Moeda</option>
+                    <option value="Renda fixa">Renda fixa</option>
+                </select>
+
+                <label for="assetName">Nome ou ticker</label>
+                <input id="assetName" type="text" placeholder="Ex: PETR4, BTC, DOLAR" required>
+
+                <div class="field-row">
+                    <div>
+                        <label for="assetQuantity">Quantidade</label>
+                        <input id="assetQuantity" type="number" min="0" step="0.01" placeholder="10" required>
+                    </div>
+                    <div>
+                        <label for="assetPrice">Preco medio</label>
+                        <input id="assetPrice" type="number" min="0" step="0.01" placeholder="32.50" required>
+                    </div>
+                </div>
+
+                <button type="submit">Adicionar ativo</button>
+                <button class="ghost-button" id="loadSample" type="button">Carregar exemplo</button>
+            </form>
+
+            <section class="dashboard" aria-label="Painel financeiro">
+                <div class="panel chart-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">Desempenho</p>
+                            <h2>Distribuicao da carteira</h2>
+                        </div>
+                        <button class="ghost-button small" id="clearPortfolio" type="button">Limpar</button>
+                    </div>
+                    <canvas id="portfolioChart" width="680" height="320" aria-label="Grafico da carteira"></canvas>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">Ativos</p>
+                            <h2>Carteira atual</h2>
+                        </div>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ativo</th>
+                                    <th>Tipo</th>
+                                    <th>Qtd.</th>
+                                    <th>Atual</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="assetTable"></tbody>
+                        </table>
+                    </div>
+                    <p class="empty-state" id="emptyState">Cadastre um ativo ou carregue o exemplo para visualizar a carteira.</p>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script src="js/app.js?v=20260614-1"></script>
+</body>
+
+</html>
